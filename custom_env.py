@@ -92,7 +92,7 @@ class ParallelParkingEnv(AbstractEnv):
         self.steps += 1
 
         reward = self._reward(action)
-        terminated = self._is_terminal()
+        terminated = self._is_terminated()
         truncated = self._is_truncated()
 
         return self.observation_type.observe(), reward, terminated, truncated, {}
@@ -128,7 +128,7 @@ class ParallelParkingEnv(AbstractEnv):
 
         return reward
 
-    def _is_terminal(self):
+    def _is_terminated(self):
         distance = np.linalg.norm(self.vehicle.position - self.goal_position)
         heading_diff = self._compute_heading_diff()
 
